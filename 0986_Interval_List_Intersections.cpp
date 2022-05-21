@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //Time O(m+n), Space O(1)
     vector<vector<int>> intervalIntersection(vector<vector<int>>& firstList, vector<vector<int>>& secondList) {
         int i = 0, j = 0;
         vector<vector<int> > res;
