@@ -1,6 +1,6 @@
 ### 327.Count of Range Sum
 
-So far we have three solutions: Merge Sort, Segment Tree and Binary Indexed Tree. Each of them  has time complexity O(NlogN) and Space complexity O(N), where N is the size of the input array nums. To understand these solutions,  just remember the fact that the sum of values from index i to j is sum(i,j) = sum[j]-sum[i-1], where i <= j; 
+So far we have three solutions: Merge Sort, Segment Tree and Binary Indexed Tree. Each of them  has time complexity O(NlogN) and Space complexity O(N), where N is the size of the input array nums. To understand these solutions,  just remember the fact that the sum of values from index i to j is sum(i,j) = sum[j]-sum[i-1], where i <= j.
 
 #### 1.Merge Sort (Accepted, faster than 54.19%)
 
@@ -9,12 +9,7 @@ void mergeArray(vector<long long>& sum, int left, int mid, int right){
     vector<long long> tmp(right-left+1);
     int i = left, j = mid+1, k = 0;
     while(i <= mid && j <= right){
-        if(sum[i] <= sum[j]){
-            tmp[k] = sum[i++];
-        }else{
-            tmp[k] = sum[j++];
-        }
-        ++k;
+        tmp[k++] = sum[i] <= sum[j]? sum[i++] : sum[j++];
     }
     while(i <= mid){
         tmp[k++] = sum[i++];
