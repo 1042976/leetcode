@@ -67,10 +67,11 @@ private:
     vector<int> arr;
 public:
     SegmentTree(int size): n(size), arr(2*size){
+        arr[0] = 0;
         for(int i = 0; i < n; ++i){
             arr[i+n] = 1;
         }
-        for(int i = n-1; i >= 0; --i){
+        for(int i = n-1; i > 0; --i){
             arr[i] = arr[2*i]+arr[2*i+1];
         }
     }
