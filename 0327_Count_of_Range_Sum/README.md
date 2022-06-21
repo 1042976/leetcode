@@ -1,6 +1,6 @@
 ### 327.Count of Range Sum
 
-So far we have three solutions: Merge Sort, Segment Tree and Binary Indexed Tree. Each of them  has time complexity O(NlogN) and space complexity O(N), where N is the size of the input array nums. To understand these solutions,  just remember that the sum of values from index i to j is 
+So far, we have three solutions: Merge Sort, Segment Tree, and Binary Indexed Tree. Each has time complexity O(NlogN) and space complexity O(N), where N is the size of the input array nums. To understand these solutions, remember that the sum of values from index i to j is 
 
 ​																			sum(i,j) = sum(0,j)-sum(0,i-1), where i <= j
 
