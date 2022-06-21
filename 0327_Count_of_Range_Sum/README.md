@@ -92,7 +92,7 @@ public:
             if(idx%2){
                 arr[idx/2] = arr[idx-1] + arr[idx];
             }else{
-                arr[idx/2] = arr[idx]+arr[idx+1];
+                arr[idx/2] = arr[idx] + arr[idx+1];
             }
             idx >>= 1;
         }
