@@ -134,7 +134,7 @@ class BIT{
 private:
     int n;
     vector<int> arr;
-    int getChild(int idx){
+    int getNext(int idx){
         return idx + (idx & (-idx));
     }
     int getParent(int idx){
