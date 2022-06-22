@@ -137,7 +137,7 @@ int countRangeSum(vector<int>& nums, int lower, int upper){
 
 
 
-#### 3.Binart Indexed Tree (Accepted, faster than 84.68%)
+#### 3.Binary Indexed Tree (Accepted, faster than 84.68%)
 
 ```C++
 class BIT{
