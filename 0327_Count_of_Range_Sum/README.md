@@ -162,7 +162,7 @@ public:
         ++idx;
         while(idx < arr.size()){
             arr[idx] += val;
-            idx = getChild(idx);                
+            idx = getNext(idx);                
         }
     }
     int getSum(int idx){
@@ -177,9 +177,8 @@ public:
 };
 //Time O(NlogN), Space O(N)
 int countRangeSum(vector<int>& nums, int lower, int upper){
-    int size = nums.size();
     vector<long long> sum(nums.size()+1, 0);
-    for(int i = 0; i < size; ++i){
+    for(int i = 0; i < nums.size(); ++i){
         sum[i+1] = sum[i]+nums[i];
     }
     vector<long long> A(sum.begin(), sum.end());
