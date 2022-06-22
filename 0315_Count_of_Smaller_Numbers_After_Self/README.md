@@ -125,7 +125,7 @@ vector<int> countSmaller(vector<int>& nums){
 
 ```
 
-#### 3.Binart Indexed Tree (Accepted, faster than 82.27%)
+#### 3.Binary Indexed Tree (Accepted, faster than 82.27%)
 
 ```C++
 class BIT{
