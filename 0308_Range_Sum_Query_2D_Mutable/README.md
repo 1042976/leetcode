@@ -1,5 +1,23 @@
 ### 308.Range Sum Query 2D - Mutable
 
+**In Segment Tree solution, the time and space complexity for each method are:**
+
+constructor  - O(MN) and O(MN)
+
+update - O(logM * logN) and O(1)
+
+sumRegion - O(logM * logN) and O(logN)
+
+The space complexity of the sumRegion could be O(1) but here we define an array to store possible column indices to avoid trying to get the same column indices repeatedly.
+
+**In BIT solution, the time and space complexity for each method are:**
+
+constructor - O(MN) and O(MN)
+
+update - O(logM * logN) and O(1)
+
+sumRegion - O(logM * logN) and O(1)
+
 #### 1.Segment Tree (19ms - 37ms)
 
 ```C++
@@ -92,12 +110,15 @@ class NumMatrix {
 public:   
     SegmentTree tree;
     
+    //Time O(MN), Space O(MN)
     NumMatrix(vector<vector<int>>& matrix):tree(matrix) {}
     
+    //Time O(logM * logN), Space O(1)
     void update(int row, int col, int val) {
         tree.update(row, col, val);
     }
     
+    //Time O(logM * logN), Space O(logN)
     int sumRegion(int row1, int col1, int row2, int col2) {
         return tree.sumRegion(row1, col1, row2, col2);
     }
