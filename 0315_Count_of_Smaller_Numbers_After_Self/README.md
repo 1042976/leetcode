@@ -11,7 +11,7 @@ For Merge Sort, we divide the array into two subarrays, and the workflow is:
 
 For Segment Tree and Binary Indexed Tree, imagine that we have an array A of size 20001. The value at index i in this array represents the count of the integer i+10000 that appears in the input array nums. We first use array A to initialize the tree. Then we scan over each integer x in nums from the beginning and get the number of all smaller integers ahead of x  using the tree.
 
-#### 1.Merge Sort (Accepted, faster than 28.89%)
+#### 1.Merge Sort (Accepted, faster than 48.80%)
 
 ```C++
 void mergeArray(vector<int>& nums, vector<int>& indices, int left, int mid, int right){
@@ -63,7 +63,7 @@ vector<int> countSmaller(vector<int>& nums) {
 }
 ```
 
-#### 2.Segment Tree (Accepted, faster than 75.43%)
+#### 2.Segment Tree (Accepted, faster than 77.49%)
 
 ```C++
 class SegmentTree{
@@ -117,7 +117,7 @@ vector<int> countSmaller(vector<int>& nums){
 }
 ```
 
-#### 3.Binary Indexed Tree (Accepted, faster than 86.77%)
+#### 3.Binary Indexed Tree (Accepted, faster than 91.12%)
 
 ```C++
 class BIT{
