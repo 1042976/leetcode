@@ -9,7 +9,7 @@ For Merge Sort, we divide the array into two subarrays, and the workflow is:
 3. Update the result for the whole array based on sorted subarrays.
 4. Merge the two sorted subarrays.
 
-For Segment Tree and Binary Indexed Tree, imagine that we have an array A of size 20001. The value at index i in this array represents the count of the integer i+10000 that appears in the input array nums. We first use array A to initialize the tree. Then we scan over each integer x in nums from the beginning and get the number of all smaller integers ahead of x  using the tree.
+For Segment Tree and Binary Indexed Tree, imagine that we have an array A of size 20001. The value at index i in this array represents the count of the integer i-10000 that appears in the input array nums. We first use array A to initialize the tree. Then we scan over each integer x in nums from the beginning and get the number of all smaller integers ahead of x  using the tree.
 
 #### 1.Merge Sort (Accepted, faster than 48.80%)
 
