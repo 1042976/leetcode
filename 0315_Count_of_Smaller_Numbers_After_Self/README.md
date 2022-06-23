@@ -73,7 +73,7 @@ private:
 public:
     SegmentTree(int _m, vector<int>& nums): m(_m), arr(2*m, 0){
         for(const auto &x : nums){
-            arr[x+10000+m] += 1;
+            ++arr[x+10000+m];
         }
         for(int i = m-1; i > 0; --i){
             arr[i] = arr[2*i] + arr[2*i+1];
