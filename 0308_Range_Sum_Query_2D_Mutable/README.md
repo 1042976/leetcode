@@ -20,7 +20,7 @@ update - O(logM * logN) and O(1)
 
 sumRegion - O(logM * logN) and O(1)
 
-#### 1.Segment Tree (19ms - 37ms)
+#### 1.Segment Tree (8ms - 37ms)
 
 ```C++
 class SegmentTree{
@@ -127,7 +127,7 @@ public:
 };
 ```
 
-#### 2.Binary Indexed Tree (23ms - 38ms)
+#### 2.Binary Indexed Tree (19ms - 38ms)
 
 ```c++
 class BIT{
