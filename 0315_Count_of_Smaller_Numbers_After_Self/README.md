@@ -1,6 +1,6 @@
 ### 315.Count of Smaller Numbers After Self
 
-We have three solutions: Merge Sort, Segment Tree, and Binary Indexed Tree. They all have a time complexity of O(NlogN) and space complexity of O(N), where N is the size of the given input array.
+We have three solutions: Merge Sort, Segment Tree, and Binary Indexed Tree. Assuming the size of array nums is N, then Merge Sort's time and space complexity are O(NlogN) and O(N), and Segment Tree and Binary Indexed Tree's time and space complexity are O(N) and O(1).
 
 For Merge Sort, we divide the array into two subarrays, and the workflow is:
 
@@ -9,7 +9,7 @@ For Merge Sort, we divide the array into two subarrays, and the workflow is:
 3. Update the result for the whole array based on sorted subarrays.
 4. Merge the two sorted subarrays.
 
-For Segment Tree and Binary Indexed Tree, we initialize the result array "count" the same as the input array "nums" and sort the nums by ascending order. We build up the tree structure based on the size of the array and add value 1 to the corresponding node that covers the value in the array "nums." After that, we traverse the array "count" from the beginning, and we use the lower_bound method to find the first index in the array "nums" for the current value we are on. We remove the current value's weight from the tree to avoid taking it into account in subsequent traversal and then use the tree structure to calculate the count of values ahead of the current value and update the array "count" in place.
+For Segment Tree and Binary Indexed Tree, imagine that we have an array A of size 20001. The value at index i in this array represents the count of the integer i+10000 that appears in the input array nums. We first use array A to initialize the tree. Then we scan over each integer x in nums from the beginning and get the number of all smaller integers ahead of x  using the tree.
 
 #### 1.Merge Sort (Accepted, faster than 43.36%)
 
@@ -67,25 +67,24 @@ vector<int> countSmaller(vector<int>& nums) {
 }
 ```
 
-#### 2.Segment Tree (Accepted, faster than 68.27%)
+#### 2.Segment Tree (Accepted, faster than 72.29%)
 
 ```C++
 class SegmentTree{
 private:
-    int n;
+    int m;
     vector<int> arr;
 public:
-    SegmentTree(int size): n(size), arr(2*size){
-        arr[0] = 0;
-        for(int i = n; i < 2*n; ++i){
-            arr[i] = 1;
+    SegmentTree(int _m, vector<int>& nums): m(_m), arr(2*m, 0){
+        for(const auto &x : nums){
+            arr[x+10000+m] += 1;
         }
-        for(int i = n-1; i > 0; --i){
+        for(int i = m-1; i > 0; --i){
             arr[i] = arr[2*i] + arr[2*i+1];
         }
     }
     void addValue(int idx, int val){
-        idx += n;
+        idx += m;
         arr[idx] += val;
         while(idx > 1){
             idx >>= 1;
@@ -94,8 +93,8 @@ public:
     }
     int getSum(int right){
         int count = 0;
-        int left = n;
-        right += n;
+        int left = m;
+        right += m;
         while(left <= right){
             if(left%2){
                 count += arr[left++];
@@ -109,14 +108,12 @@ public:
         return count;
     }
 };
-//Time O(NlogN), Space O(N)
+//Time O(N), Space O(1)
 vector<int> countSmaller(vector<int>& nums){
-    int size = nums.size();
-    vector<int> count(nums.begin(), nums.end());
-    sort(nums.begin(), nums.end());
-    SegmentTree tree(size);
-    for(int i = 0; i < size; ++i){
-        int idx = lower_bound(nums.begin(), nums.end(), count[i])-nums.begin();
+    vector<int> count(nums.size());
+    SegmentTree tree(20001, nums);
+    for(int i = 0; i < nums.size(); ++i){
+        int idx = nums[i]+10000;
         tree.addValue(idx, -1);
         count[i] = tree.getSum(idx-1);
     }
@@ -125,12 +122,12 @@ vector<int> countSmaller(vector<int>& nums){
 
 ```
 
-#### 3.Binary Indexed Tree (Accepted, faster than 82.27%)
+#### 3.Binary Indexed Tree (Accepted, faster than 95.25%)
 
 ```C++
 class BIT{
 private:
-    int n;
+    int m;
     vector<int> arr;
     int getNext(int idx){
         return idx + (idx & (-idx));
@@ -139,15 +136,14 @@ private:
         return idx & (idx-1);
     }
 public:
-    BIT(int size): n(size), arr(size+1, 0){
-        arr[0] = 0;
-        for(int i = 0; i < n; ++i){
-            addValue(i, 1);
+    BIT(int _m, vector<int>& nums): m(_m), arr(m+1, 0){
+        for(const auto &x : nums){
+            addValue(x+10000, 1);
         }
     }
     void addValue(int idx, int val){
         ++idx;
-        while(idx <= n){
+        while(idx <= m){
             arr[idx] += val;
             idx = getNext(idx);
         }
@@ -162,14 +158,12 @@ public:
         return count;
     }
 };
-//Time O(NlogN), Space O(N)
+//Time O(N), Space O(1)
 vector<int> countSmaller(vector<int>& nums){
-    vector<int> count(nums.begin(), nums.end());
-    sort(nums.begin(), nums.end());
-    int size = nums.size();
-    BIT tree(size);
-    for(int i = 0; i < size; ++i){
-        int idx = lower_bound(nums.begin(), nums.end(), count[i])-nums.begin();
+    vector<int> count(nums.size());
+    BIT tree(20001, nums);
+    for(int i = 0; i < nums.size(); ++i){
+        int idx = nums[i]+10000;
         tree.addValue(idx, -1);
         count[i] = tree.getSum(idx-1);
     }
