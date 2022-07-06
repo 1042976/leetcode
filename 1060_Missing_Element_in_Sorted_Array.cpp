@@ -16,7 +16,7 @@ public:
     int getNumOfMissings(vector<int>& nums, int idx){
         return nums[idx]-nums[0]-idx;
     }
-    //Time O(N), Space O(1)
+    //Time O(logN), Space O(1)
     int missingElement(vector<int>& nums, int k) {
         int N = nums.size();
         if(getNumOfMissings(nums, N-1) < k){
