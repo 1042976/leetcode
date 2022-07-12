@@ -1,6 +1,6 @@
 ### 1340.Jump Game V
 
-We use the depth-first search method to get the result for each index and use memorization to avoid repeating the same calculation. This method's time  complexity would be O(N), where N is the size of the input array.
+We use the depth-first search method to get the result for each index and use memorization to avoid repeating the same calculation. This method's time complexity would be O(N*d), and space complexity would be O(N), where N is the size of the input array.
 
 DFS+Memorization (Runtime: 52 - 71ms):
 
