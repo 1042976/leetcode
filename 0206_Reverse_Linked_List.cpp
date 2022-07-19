@@ -10,8 +10,38 @@
  */
 class Solution {
 public:
-    //Time O(N), Space O(N)
-    ListNode* reverseList(ListNode* head) {
+    //Time O(nlogn), Space O(logn)
+    // ListNode* reverseList(ListNode* head) {
+    //     if(head == nullptr || head->next == nullptr){
+    //         return head;
+    //     }
+    //     ListNode *slow = head, *fast = head, *tail = nullptr;
+    //     while(fast != nullptr && fast->next != nullptr){
+    //         tail = slow;
+    //         slow = slow->next;
+    //         fast = fast->next->next;
+    //     }
+    //     tail->next = nullptr;
+    //     head = reverseList(head);
+    //     ListNode* head2 = reverseList(slow);
+    //     slow->next = head;
+    //     return head2;
+    // }
+    
+    //iterative. Time O(N), Space O(1)
+    // ListNode* reverseList(ListNode* head){
+    //     ListNode *prev = nullptr, *cur = head;
+    //     while(cur != nullptr){
+    //         ListNode *next = cur->next;
+    //         cur->next = prev;
+    //         prev = cur;
+    //         cur = next;     
+    //     }
+    //     return prev;
+    // }
+    
+    //recursive. Time O(N), Space O(N)
+    ListNode* reverseList(ListNode* head){
         if(head == nullptr || head->next == nullptr){
             return head;
         }
@@ -20,19 +50,4 @@ public:
         head->next = nullptr;
         return newHead;
     }
-    
-    //Time O(N), Space O(1)
-    // ListNode* reverseList(ListNode* head) {
-    //     if(head == nullptr){
-    //         return nullptr;
-    //     }
-    //     ListNode *last = nullptr, *cur = head;
-    //     while(cur != nullptr){
-    //         ListNode* tmp = cur->next;
-    //         cur->next = last;
-    //         last = cur;
-    //         cur = tmp;
-    //     }
-    //     return last;
-    // }
 };

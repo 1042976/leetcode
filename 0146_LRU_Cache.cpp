@@ -1,48 +1,50 @@
 class LRUCache {
 public:
-    //T-O(1), S-O(capacity)
-    unordered_map<int, pair<int, list<int>::iterator> > hashMap;
-    list<int> lruList;
     int capacity;
-    LRUCache(int capacity):capacity(capacity) {
+    unordered_map<int, list<pair<int, int> >::iterator> hashMap;
+    list<pair<int, int> > values; 
+    //Time O(1), Space O(1)
+    LRUCache(int capacity): capacity (capacity) {
         
     }
     
+    //Time O(1), Space O(1)
     int get(int key) {
-        if(hashMap.count(key) == 0){
+        if(hashMap.count(key)){
+            auto it = hashMap[key]; 
+            values.emplace_back(*it);
+            values.erase(it);
+            hashMap[key] = (--values.end());
+            return hashMap[key]->second;
+        }else{
             return -1;
         }
-        setKeyAsLastOne(hashMap[key].second);
-        return hashMap[key].first;
     }
     
+    void updateNode(int key, int value){
+        auto it = hashMap[key];
+        values.erase(it);
+        values.emplace_back(make_pair(key, value));
+        hashMap[key] = (--values.end());
+    }
+    void deleteNode(list<pair<int, int> >::iterator it){
+        hashMap.erase(it->first);
+        values.erase(it);
+    }
+    void addNode(int key, int value){
+        values.emplace_back(make_pair(key, value));
+        hashMap[key] = (--values.end());
+    }
+    //Time O(1), Space O(1)
     void put(int key, int value) {
-        if(hashMap.count(key) == 1){
-            hashMap[key].first = value;
-            setKeyAsLastOne(hashMap[key].second);
+        if(hashMap.count(key)){
+            updateNode(key, value);
         }else{
             if(hashMap.size() == capacity){
-                deletelruKey();
+                deleteNode(values.begin());
             }
-            addNewKey(key, value);
+            addNode(key, value);
         }
-    }
-    void deletelruKey(){
-        hashMap.erase(*lruList.begin());
-        lruList.erase(lruList.begin());
-    }
-    
-    void addNewKey(int key, int value){
-        hashMap[key].first = value;
-        lruList.emplace_back(key);
-        hashMap[key].second = --lruList.end();
-    }
-    
-    void setKeyAsLastOne(list<int>::iterator it){
-        int key = *it;
-        lruList.erase(it);
-        lruList.emplace_back(key);
-        hashMap[key].second = --lruList.end();
     }
 };
 

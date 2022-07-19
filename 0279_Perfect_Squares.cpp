@@ -23,6 +23,7 @@ public:
         int a = sqrt(n);
         return n == a*a;
     }
+    //Time O(sqrt(n)), Space O(1)
     int numSquares(int n){
         while(n%4 == 0){
             n /= 4;
