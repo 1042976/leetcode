@@ -1,15 +1,15 @@
 class Solution {
 public:
-    int mod = 1e+9+7;
+    long long mod = 1e+9+7;
     int a = 26;
     int N;
-    long long getPower(int a, int b){
+    long long getPower(long long a, int b){
         long long res = 1;
         while(b != 0){
             if(b%2){
                 res = res*a%mod;
             }
-            a = (long long)a*a%mod;
+            a = a*a%mod;
             b >>= 1;
         }
         return res;
