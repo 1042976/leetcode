@@ -24,7 +24,7 @@ public:
         }
         return memo[i];
     }
-    //Time O(N), Space O(N)
+    //Time O(N*d), Space O(N)
     int maxJumps(vector<int>& arr, int d) {
         n = arr.size();
         memo.resize(n, -1);
