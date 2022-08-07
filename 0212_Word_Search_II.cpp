@@ -187,9 +187,9 @@ public:
         }
         m = board.size();
         n = board[0].size();
+        memo = vector<vector<bool> >(m, vector<bool>(n, false));
         for(int i = 0; i < m; ++i){
             for(int j = 0; j < n; ++j){
-                memo = vector<vector<bool> >(m, vector<bool>(n, false));
                 backtrack(board, i, j, trie.root, "");
             }
         }
