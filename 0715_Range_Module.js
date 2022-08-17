@@ -10,7 +10,7 @@ RangeModule.prototype.upper_bound = function(val){
     let left = 0;
     let right = this.ranges.length;
     while(left < right){
-        let mid = Math.floor(left + (right-left)/2);
+        let mid = Math.floor(left + ((right-left)>>1));
         if(this.ranges[mid][0] <= val){
             left = mid+1;
         }else{
