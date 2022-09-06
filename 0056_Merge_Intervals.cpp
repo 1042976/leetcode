@@ -1,6 +1,6 @@
 class Solution {
 public:
-    //Time O(NlogN), Space O(1)
+    //Time O(NlogN), Space O(logN)
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
         vector<vector<int> > res;
         sort(intervals.begin(), intervals.end(), [](const vector<int>& a, const vector<int>& b){
