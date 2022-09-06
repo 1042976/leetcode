@@ -71,7 +71,7 @@ public:
         int size;
         vector<int> parent, rank;
     public:
-        DSU(int m, int n):size((m*m-2*m+2)*n), parent(size), rank(size, 0){
+        DSU(int m, int n):size(m*n), parent(size), rank(size, 0){
             for(int i = 0; i < size; ++i){
                 parent[i] = i;
             }
@@ -100,7 +100,7 @@ public:
             }
         }
     };
-    //Time O(N*a(N)), Space O(N)
+    //Time O(N*a(N)), Space O(N), N is the total number of points in the grid
     int numIslands(vector<vector<char>>& grid){
         int m = grid.size(), n = grid[0].size(), count = 0;
         DSU dsu(m, n);
