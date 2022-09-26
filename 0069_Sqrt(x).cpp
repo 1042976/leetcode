@@ -20,15 +20,12 @@ public:
     //Newton's method
     //Time O(logx), Space O(1)
     int mySqrt(int x) {
-        double y = x;
         int yn = x;
         while(yn > 0){
             if(yn <= x/yn){
                 return yn;
             }else{
-                y = yn;
-                y = 0.5*(y+x/y);
-                yn = y;
+                yn = 0.5*(yn+x/(double)yn);
             }
         }
         return yn;
