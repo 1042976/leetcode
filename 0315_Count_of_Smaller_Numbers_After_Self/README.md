@@ -1,15 +1,15 @@
 ### 315.Count of Smaller Numbers After Self
 
-We have three solutions: Merge Sort, Segment Tree, and Binary Indexed Tree. Assuming the size of array nums is N, then Merge Sort's time and space complexity are O(NlogN) and O(N), and Segment Tree and Binary Indexed Tree's time and space complexity are O(N) and O(1).
+There are three solutions for this problem: Merge Sort, Segment Tree, and Binary Indexed Tree. Assuming the size of the array nums is N, the time and space complexity for Merge Sort is O(NlogN) and O(N), while for Segment Tree and Binary Indexed Tree, it is O(N) and O(1), respectively.
 
-For Merge Sort, we divide the array into two subarrays, and the workflow is:
+For the Merge Sort solution, we divide the array into two subarrays and follow these steps:
 
-1. Update the result for subarrays separately.
-2. Sort each subarray by decreasing order.
-3. Update the result for the whole array based on sorted subarrays.
+1. Update the result for each subarray separately.
+2. Sort each subarray in descending order.
+3. Update the result for the whole array based on the sorted subarrays.
 4. Merge the two sorted subarrays.
 
-For Segment Tree and Binary Indexed Tree, imagine that we have an array A of size 20001. The value at index i in this array represents the count of the integer i-10000 that appears in the input array nums. We first use array A to initialize the tree. Then we scan over each integer x in nums from the beginning and get the number of all smaller integers ahead of x  using the tree.
+For the Segment Tree and Binary Indexed Tree solutions, consider an array A of size 20001. The value at index i in this array represents the count of the integer (i - 10000) that appears in the input array nums. First, we use array A to initialize the tree. Then, we iterate over each integer x in nums and obtain the number of all smaller integers preceding x using the tree.
 
 #### 1.Merge Sort (Accepted, faster than 48.80%)
 

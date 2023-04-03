@@ -1,14 +1,14 @@
 ### 327.Count of Range Sum
 
-So far, we have three solutions: Merge Sort, Segment Tree, and Binary Indexed Tree. Each has time complexity O(NlogN) and space complexity O(N), where N is the size of the input array nums. To understand these solutions, remember that the sum of values from index i to j is 
+There are three solutions to this problem: Merge Sort, Segment Tree, and Binary Indexed Tree. Each of these solutions has a time complexity of O(NlogN) and a space complexity of O(N), where N is the size of the input array 'nums'. To better understand these solutions, it's important to recall that the sum of values from index i to j can be represented as: 
 
 ​																			sum(i,j) = sum(0,j)-sum(0,i-1), where i <= j
 
-and the question to count all sum(i,j) that satisfy
+The problem statement asks us to count all sum(i, j) that satisfy the following condition:
 
 ​																			lower <= sum(i, j) <= upper
 
-becomes the question to count all sum(0, j) that satisfy
+By rephrasing the problem, we need to count all sum(0, j) values that meet the following criteria:
 
 ​																			lower+sum(0,i-1) <= sum(0,j) <= upper+sum(0, i-1)
 

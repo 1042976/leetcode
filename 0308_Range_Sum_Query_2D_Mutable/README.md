@@ -1,24 +1,20 @@
 ### 308.Range Sum Query 2D - Mutable
 
-**In Segment Tree solution, the time and space complexity for each method are:**
+In the Segment Tree solution, the time and space complexity for each method are as follows:
 
-constructor  - O(MN) and O(MN)
+- constructor: O(MN) and O(MN)
+- update: O(logM * logN) and O(1)
+- sumRegion: O(logM * logN) and O(logN)
 
-update - O(logM * logN) and O(1)
+The space complexity of the sumRegion method could be O(1), but in this case, we define an array to store possible column indices, which helps avoid repeated attempts to obtain the same column indices.
 
-sumRegion - O(logM * logN) and O(logN)
+To better understand the structure of the 2D Segment Tree, this link may be helpful: https://www.geeksforgeeks.org/two-dimensional-segment-tree-sub-matrix-sum/
 
-The space complexity of the sumRegion could be O(1) but here we define an array to store possible column indices to avoid trying to get the same column indices repeatedly.
+In the Binary Indexed Tree (BIT) solution, the time and space complexity for each method are as follows:
 
-This link is helpful to understand the structure of the 2D Segment Tree: https://www.geeksforgeeks.org/two-dimensional-segment-tree-sub-matrix-sum/
-
-**In BIT solution, the time and space complexity for each method are:**
-
-constructor - O(MN) and O(MN)
-
-update - O(logM * logN) and O(1)
-
-sumRegion - O(logM * logN) and O(1)
+- constructor: O(MN) and O(MN)
+- update: O(logM * logN) and O(1)
+- sumRegion: O(logM * logN) and O(1)
 
 #### 1.Segment Tree (8ms - 37ms)
 
