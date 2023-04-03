@@ -81,10 +81,7 @@ public:
     
     int findKthLargest(vector<int> &nums1, vector<int> &nums2, int k){
         int l1 = 0, l2 = 0;
-        while(l1 < nums1.size() && l2 < nums2.size()){
-            if(k == 1){
-                return min(nums1[l1], nums2[l2]);
-            }
+        while(l1 < nums1.size() && l2 < nums2.size() && k > 1){
             int m = k/2;
             int N1 = l1+m-1 < nums1.size() ? nums1[l1+m-1] : INT_MAX;
             int N2 = l2+m-1 < nums2.size() ? nums2[l2+m-1] : INT_MAX;

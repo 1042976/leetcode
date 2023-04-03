@@ -1,67 +1,58 @@
 class Solution {
 public:
-    //T-O(n), S-O(n). with stack.
+    //Time O(N), Space O(1)
     // int calculate(string s) {
-    //     stack<int> st;
-    //     int curN = 0;
+    //     int res = 0, a = 0, b = 0;
     //     char op = '+';
     //     s.push_back('+');
+    //     int sign = 1;
     //     for(const auto &c : s){
     //         if(isdigit(c)){
-    //             curN = curN*10+ (c-'0');
-    //         }else if(c == ' '){
-    //             continue;
-    //         }else{
-    //             if(op == '+'){
-    //                 st.push(curN);
-    //             }else if(op == '-'){
-    //                 curN = -curN;
-    //                 st.push(curN);
-    //             }else if(op == '*'){
-    //                 st.top() *= curN;
+    //             b = b*10 + (c-'0');
+    //         }else if(c != ' '){
+    //             if(op == '*'){
+    //                 b *= a;
     //             }else if(op == '/'){
-    //                 st.top() /= curN;
+    //                 b = a/b;
     //             }
-    //             curN = 0;
+    //             if(c == '+' || c == '-'){
+    //                 res += b*sign;
+    //                 a = 0;
+    //                 sign = c == '+'? 1 : -1;
+    //             }else{
+    //                 a = b;
+    //             }
+    //             b = 0;
     //             op = c;
     //         }
     //     }
-    //     while(!st.empty()){
-    //         curN += st.top();
-    //         st.pop();
-    //     }
-    //     return curN;
+    //     return res;
     // }
     
-    //T-O(n), S-O(1)
+    //Time O(N), Space O(1)
     int calculate(string s){
-        int res = 0;
-        int k = 0;
-        int lastNum = 0;
+        int res = 0, a = 0, b = 0;
         char op = '+';
         s.push_back('+');
-        for(const auto &c : s){
-            if(isdigit(c)){
-                k = k*10 + (c-'0');
-            }else if(c == ' '){
-                continue;
-            }else{
+        for(const auto &x : s){
+            if(isdigit(x)){
+                b = b*10 + (x-'0');
+            }else if(x != ' '){
                 if(op == '+'){
-                    res += lastNum;
-                    lastNum = k;
+                    res += a;
+                    a = b;
                 }else if(op == '-'){
-                    res += lastNum;
-                    lastNum = -k;
+                    res += a;
+                    a = -b;
                 }else if(op == '*'){
-                    lastNum *= k;
+                    a *= b;
                 }else{
-                    lastNum /= k;
+                    a /= b;
                 }
-                k = 0;
-                op = c;
+                b = 0;
+                op = x;
             }
         }
-        res += lastNum;
-        return res;
-    } 
+        return res+a;
+    }
 };

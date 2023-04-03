@@ -163,16 +163,16 @@ public:
         Node* child = parent->hashMap[letter]; 
         str.push_back(letter);
         memo[i][j] = true;
+        if(child->isEnd){
+            res.emplace_back(str);
+            child->isEnd = false;
+        }
         for(const auto &offset : offsets){
             int newI = i + offset[0];
             int newJ = j + offset[1];
             if(newI >= 0 && newI < m & newJ >= 0 && newJ < n && memo[newI][newJ] == false){
                 backtrack(board, newI, newJ, child, str);
             }
-        }
-        if(child->isEnd){
-            res.emplace_back(str);
-            child->isEnd = false;
         }
         if(child->hashMap.empty()){
             delete child;
@@ -187,9 +187,9 @@ public:
         }
         m = board.size();
         n = board[0].size();
+        memo = vector<vector<bool> >(m, vector<bool>(n, false));
         for(int i = 0; i < m; ++i){
             for(int j = 0; j < n; ++j){
-                memo = vector<vector<bool> >(m, vector<bool>(n, false));
                 backtrack(board, i, j, trie.root, "");
             }
         }
